@@ -9,15 +9,36 @@
     <script src="https://kit.fontawesome.com/0f91b24afc.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-4 offset-xl-4">
-                <div class="card mt-5">
-                    <div class="card-header">
-                        <h2 class="card-title">Stimme jetzt ab!</h2>
-                    </div>
-                    <div class="card-body">
-                        
+    <div id="app">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 offset-xl-4">
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h2 class="card-title">Stimme jetzt ab!
+                                <span class="float-end text-primary" style="cursor:pointer" v-on:click="upvoteAll">
+                                    <i class="fa fa-chevron-up"></i>
+                                    <strong>{{ totalVotes }} Stimmen</strong>
+                                </span>
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex" v-for="submission in submissions" :key="submission.id" >
+                                <div class="d-shrink-0">
+                                    <img v-bind:src="submission.img" alt="">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>{{ submission.title }}
+                                        <span class="float-end text-primary" style="cursor:pointer" v-on:click="upvote(submission.id)">
+                                            <i class="fa fa-chevron-up"></i>
+                                            <strong>{{ submission.votes }}</strong>
+                                        </span>
+                                    </h5>
+                                    <div>{{ submission.desc }}</div>
+                                    <small class="text-muted">Eingereicht von {{ submission.country }}</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

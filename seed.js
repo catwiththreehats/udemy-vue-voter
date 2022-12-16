@@ -2,9 +2,9 @@ const submissions = [
     {
         id: 1,
         title: 'Spaghetti Bolognese',
-        desc: 'Ein Nudelgericht mit Hackfleischsoße',
+        desc: 'A pasta dish with minced meat sauce',
         votes: 16,
-        country: 'Italien',
+        country: 'Italy',
         img: 'https://via.placeholder.com/64'
     },
     {

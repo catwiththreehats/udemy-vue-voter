@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>20 Cubes in a Circle with WebGL</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        // Create a WebGL renderer
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas });
+
+        // Create a scene
+        var scene = new THREE.Scene();
+
+        // Create a perspective camera
+        var camera = new THREE.PerspectiveCamera(
+            75,   // Field of view
+            1,    // Aspect ratio
+            0.1,  // Near plane
+            1000  // Far plane
+        );
+
+        // Set the position of the camera
+        camera.position.set(0, 0, 5);
+
+        // Create a material for the cubes
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+
+        // Create 20 cubes and arrange them in a circle
+        for (var i = 0; i < 20; i++) {
+            // Create a cube
+            var cube = new THREE.Mesh(
+                new THREE.BoxGeometry(0.2, 0.2, 0.2),  // Size of the cube
+                material                         // Material for the cube
+            );
+
+            // Set the position of the cube
+            var angle = (360 / 20) * i * Math.PI / 180;
+            cube.position.set(Math.cos(angle), Math.sin(angle), 0);
+
+            // Add the cube to the scene
+            scene.add(cube);
+        }
+
+        // Render the scene
+        renderer.render(scene, camera);
+
+        function animate() {
+            // Rotate the scene by a small amount
+            scene.rotation.x += 0.01;
+            scene.rotation.y += 0.01;
+
+            // Render the scene
+            renderer.render(scene, camera);
+
+            // Request the next animation frame
+            requestAnimationFrame(animate);
+        }
+
+        // Start animating the scene
+        animate();
+
+    </script>
+</body>
+
+</html>
